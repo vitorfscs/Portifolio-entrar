@@ -1,3 +1,25 @@
+<?php
+
+$conn = new PDO("mysql:host=127.0.0.1;dbname=login", "root", "");
+
+$nome = $_POST["nome"];
+$email = $_POST["email"];
+$senha = $_POST["senha"];
+
+$sql = "INSERT INTO usuarios (nome, , email, senha) VALUES (:nome, , :email, :senha)";
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(":nome", $nome);
+$stmt->bindParam(":email", $email);
+$stmt->bindParam(":senha", $senha);
+$stmt->execute();
+
+header("Location: index.php");
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="PT-BR">
   <head>
@@ -50,13 +72,13 @@
                     <br>
                     <input type="text" name="nome" class="inv1">
                     <br>
-                    <label>Corporação</label>
+                    <label>Email</label>
                     <br>
-                    <input type="text" name="corporacao" class="inv2">
+                    <input type="email" name="email" class="inv2">
                     <br>
-                    <label>E-Mail</label>
+                    <label>Senha</label>
                     <br>
-                    <input type="email" name="email" class="inv3">
+                    <input type="password" name="password" class="inv3">
                     <br>
                     <br>
                     <input type="submit" name="enviar" class="submit">
